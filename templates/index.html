@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #74ebd5, #ACB6E5);
+            text-align: center;
+            padding: 50px;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            width: 400px;
+            margin: auto;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        input, button {
+            padding: 10px;
+            margin: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        .weather-card {
+            margin-top: 20px;
+        }
+        img {
+            width: 64px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌤 Weather App</h1>
+        <form method="POST">
+            <input type="text" name="city" placeholder="Enter city name" required>
+            <button type="submit">Get Weather</button>
+        </form>
+
+        {% if error %}
+            <p style="color:red;">{{ error }}</p>
+        {% endif %}
+
+        {% if weather %}
+            <div class="weather-card">
+                <h2>{{ weather.city }}, {{ weather.country }}</h2>
+                <p><b>Local Time:</b> {{ weather.time }}</p>
+                <p><b>Temperature:</b> {{ weather.temp }} °C</p>
+                <p><b>Condition:</b> {{ weather.condition }}</p>
+                <img src="{{ weather.icon }}" alt="Weather Icon">
+                <p><b>Wind:</b> {{ weather.wind }} kph</p>
+                <p><b>Humidity:</b> {{ weather.humidity }} %</p>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
