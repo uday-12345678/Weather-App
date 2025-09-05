@@ -34,5 +34,7 @@ def index():
 
     return render_template("index.html", weather=weather_data, error=error)
 
-if __name__ == "__main__":
-    app.run(debug=True)
+# For Vercel, no need for app.run()
+app = app
+
+
